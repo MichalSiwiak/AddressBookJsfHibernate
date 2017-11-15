@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Address Book</title>
+	<link href="styles.css" rel="stylesheet" type="text/css" />
+	<link
+		href="https://fonts.googleapis.com/css?family=Lato:400,900&amp;subset=latin-ext"
+		rel="stylesheet" />
+
+	<link href="css/fontello.css" rel="stylesheet" type="text/css" />
+</h:head>
+<h:body>
+	<div id="container">
+		<h:form>
+			<div id="manu">
+				<div class="option">
+					<h:commandLink class="commandLink"
+						action="/home.xhtml?faces-redirect=true">Home</h:commandLink>
+				</div>
+				<div class="option">
+					<h:commandLink class="commandLink"
+						action="about.xhtml?faces-redirect=true">About the project</h:commandLink>
+				</div>
+				<div class="option">
+					<a class="commandLink"
+						href="https://github.com/MichalSiwiak/AddressBookJsfHibernate"
+						target="_blank">GitHub source<i class="icon-github"></i>
+					</a>
+				</div>
+				<div style="clear: both;"></div>
+			</div>
+		</h:form>
+		<div id="topbar">
+			<div id="topbarR">
+				<span class="bigtitle">Simple Adress Book</span>
+				<div style="height: 15px;"></div>
+				Dynamic table retrieving data using JPA and Hibernate
+			</div>
+			<div style="clear: both;"></div>
+		</div>
+
+		<div id="content">
+			<h:form>
+
+				<p:panel id="panel" header="New User">
+					<p:messages id="msgs" />
+					<h:panelGrid columns="3">
+
+						<p:outputLabel for="firstname" value="First Name:" />
+						<p:inputText id="firstname" value="#{userData.firstName}"
+							required="true" label="Firstname">
+							<f:validateLength minimum="2" />
+						</p:inputText>
+						<p:message for="firstname" display="icon" />
+
+						<p:outputLabel for="lastname" value="Last Name:" />
+						<p:inputText id="lastname" value="#{userData.lastName}"
+							required="true" label="Lastname">
+							<f:validateLength minimum="2" />
+						</p:inputText>
+						<p:message for="lastname" display="icon" />
+
+						<p:outputLabel for="eMail" value="e-mail:" />
+						<p:inputText id="eMail" value="#{userData.eMail}" required="true"
+							label="eMail">
+							<f:validateLength minimum="2" />
+						</p:inputText>
+						<p:message for="eMail" display="icon" />
+
+						<p:outputLabel for="phoneNumber" value="Phone Number:" />
+						<p:inputText id="phoneNumber" value="#{userData.phoneNumber}"
+							required="true" label="phoneNumber">
+							<f:validateLength minimum="2" />
+						</p:inputText>
+						<p:message for="phoneNumber" display="icon" />
+
+						<p:outputLabel for="age" value="Age:" />
+						<p:inputText id="age" value="#{userData.age}" required="true"
+							label="age">
+							<f:validateLength minimum="2" />
+						</p:inputText>
+						<p:message for="age" display="icon" />
+
+						<p:outputLabel for="salary" value="Salary:" />
+						<p:inputText id="salary" value="#{userData.salary}"
+							required="true" label="salary">
+							<f:validateLength minimum="2" />
+						</p:inputText>
+						<p:message for="salary" display="icon" />
+
+					</h:panelGrid>
+					<p:commandButton value="Save" update="panel" styleClass="save"
+						action="#{userData.addUser}" />
+					<p:commandButton value="Cancel" immediate="true" styleClass="save"
+						action="/home.xhtml?faces-redirect=true" />
+				</p:panel>
+
+			</h:form>
+		</div>
+		<div id="footer">&copy; Michał Siwiak. All rights reserved</div>
+	</div>
+</h:body>
+</html>

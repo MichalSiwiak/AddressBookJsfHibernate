@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Address Book</title>
+	<link href="styles.css" rel="stylesheet" type="text/css" />
+	<link
+		href="https://fonts.googleapis.com/css?family=Lato:400,900&amp;subset=latin-ext"
+		rel="stylesheet" />
+
+	<link href="css/fontello.css" rel="stylesheet" type="text/css" />
+</h:head>
+<h:body>
+	<div id="container">
+		<h:form>
+			<div id="manu">
+				<div class="option">
+					<h:commandLink class="commandLink"
+						action="/home.xhtml?faces-redirect=true">Home</h:commandLink>
+				</div>
+				<div class="option">
+					<h:commandLink class="commandLink"
+						action="about.xhtml?faces-redirect=true">About the project</h:commandLink>
+				</div>
+				<div class="option">
+					<a class="commandLink"
+						href="https://github.com/MichalSiwiak/AddressBookJsfHibernate"
+						target="_blank">GitHub source<i class="icon-github"></i>
+					</a>
+				</div>
+				<div style="clear: both;"></div>
+			</div>
+		</h:form>
+		<div id="topbar">
+			<div id="topbarR">
+				<span class="bigtitle">Simple Adress Book</span>
+				<div style="height: 15px;"></div>
+				Dynamic table retrieving data using JPA and Hibernate
+			</div>
+			<div style="clear: both;"></div>
+		</div>
+
+		<div id="content">
+			<h:form>
+				<p:commandButton value="Add new contact" styleClass="button"
+					action="new.xhtml?faces-redirect=true" />
+				<br />
+				<br />
+				<br />
+				<p:dataTable value="#{userData.users}" var="user">
+
+					<p:column headerText="Id (Edit)">
+						<h:link value="#{user.id}" outcome="edit">
+							<f:param name="userid" value="#{user.id}" />
+						</h:link>
+					</p:column>
+
+					<p:column headerText="First Name">				
+               #{user.firstName}
+            </p:column>
+
+					<p:column headerText="Last Name">
+               #{user.lastName}
+            </p:column>
+
+					<p:column headerText="e-mail">
+               #{user.eMail}
+            </p:column>
+
+					<p:column headerText="Phone Number">
+               #{user.phoneNumber}
+            </p:column>
+
+					<p:column headerText="Age">
+               #{user.age}
+            </p:column>
+
+					<p:column headerText="Salary">
+               #{user.salary}
+            </p:column>
+					<p:column>
+						<f:facet name="header">Action (Delete)</f:facet>
+						<p:commandButton action="#{userData.deleteAction(user)}"
+							icon="ui-icon-trash" update="@form"
+							style="width: 24px; height: 24px" />
+					</p:column>
+				</p:dataTable>
+			</h:form>
+		</div>
+		<div id="footer">&copy; Michał Siwiak. All rights reserved</div>
+	</div>
+</h:body>
+</html>
